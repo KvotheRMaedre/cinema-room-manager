@@ -6,11 +6,14 @@ public class Main {
     static int row = 7;
     static int column = 8;
     static char[][] room = new char[row][column];
+    static int priceFirstRow = 10;
+    static int priceLastRow = 8;
 
     public static void main(String[] args) {
         initializeRoom();
         printSeats();
-        createNewRoom();
+        //createNewRoom();
+        buyTicket();
     }
 
     public static void initializeRoom(){
@@ -49,8 +52,6 @@ public class Main {
 
     public static int calculateProfit(int numRows, int numColumns){
         int profit;
-        int priceFirstRow = 10;
-        int priceLastRow = 8;
         int totalSeats = numRows * numColumns;
         if (totalSeats <= 60){
             profit = totalSeats * priceFirstRow;
@@ -65,5 +66,24 @@ public class Main {
         }
 
         return profit;
+    }
+
+    public static void buyTicket(){
+        Scanner scanner = new Scanner(System.in);
+        int ticketPrice = priceFirstRow;
+
+        System.out.println("Lets proceed to buy a ticket, select the row you wish for:");
+        int ticketRow = scanner.nextInt();
+        System.out.println("Now the seat number:");
+        int ticketColumn = scanner.nextInt();
+
+        if( ticketRow >= ((row / 2) + 1)){
+            ticketPrice = priceLastRow;
+        }
+
+        System.out.println("Ticket price: $" + ticketPrice);
+        room[ticketRow - 1][ticketColumn - 1] = 'B';
+        printSeats();
+
     }
 }
