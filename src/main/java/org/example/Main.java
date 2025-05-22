@@ -10,10 +10,29 @@ public class Main {
     static int priceLastRow = 8;
 
     public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        int option;
         initializeRoom();
-        printSeats();
-        //createNewRoom();
-        buyTicket();
+        do {
+            System.out.println("\n1. Show the seats");
+            System.out.println("2. Buy a ticket");
+            System.out.println("0. Exit");
+            option = scanner.nextInt();
+
+            switch (option){
+                case 1:
+                    printSeats();
+                    break;
+                case 2:
+                    buyTicket();
+                    break;
+                case 0:
+                    break;
+                default:
+                    System.out.println("Select one option from the menu!");
+            }
+
+        } while (option != 0);
     }
 
     public static void initializeRoom(){
